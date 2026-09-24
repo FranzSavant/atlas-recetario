@@ -1,0 +1,255 @@
+/* recetario.css — Recetario editorial.
+   Dirección: libro de cocina de trabajo. El único gesto llamativo es el
+   contador de porciones; todo lo demás es papel, reglas finas y números
+   alineados como un libro de caja.
+   Paleta: papel con cast verde (no crema cálida) + oxblood de chile seco.
+   Tipos: Fraunces (display, con WONK) + Newsreader (texto). */
+
+:root {
+  --papel:      #F1F2EB;
+  --papel-hondo:#E7E9DF;
+  --tinta:      #1C211D;
+  --tinta-2:    #5C655D;
+  --chile:      #7C2A21;
+  --linea:      #C7CDC0;
+  --ancho:      68rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+}
+
+.hoja {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--chile);
+  outline-offset: 3px;
+}
+
+h1, h2, h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-variation-settings: "SOFT" 20, "WONK" 1;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* ---------- índice ---------- */
+
+.portada { border-bottom: 2px solid var(--tinta); padding-bottom: 1.25rem; }
+
+.portada h1 {
+  font-size: clamp(3rem, 11vw, 6.5rem);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.entrada { max-width: 44ch; margin: 0 0 0.75rem; color: var(--tinta-2); }
+
+.cuenta { margin: 0; font-size: 0.9rem; color: var(--tinta-2); }
+
+.buscador { display: flex; align-items: baseline; gap: 0.75rem; margin: 1.5rem 0 0.25rem; }
+.buscador span { font-size: 0.9rem; color: var(--tinta-2); }
+.buscador input {
+  flex: 1;
+  font: inherit;
+  color: var(--tinta);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--linea);
+  padding: 0.35rem 0;
+}
+.buscador input::placeholder { color: var(--tinta-2); opacity: 0.7; }
+
+.indice { list-style: none; margin: 1.5rem 0 0; padding: 0; }
+
+.indice .fila { border-bottom: 1px solid var(--linea); }
+
+.indice a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.9rem 0.25rem;
+  text-decoration: none;
+}
+.indice a:hover .nombre { color: var(--chile); }
+
+.indice .nombre {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  line-height: 1.15;
+}
+.indice .margen { display: flex; align-items: baseline; gap: 1rem; white-space: nowrap; }
+.indice .tiempo { color: var(--tinta-2); font-size: 0.95rem; }
+.indice .puntos { color: var(--chile); letter-spacing: 0.12em; font-size: 0.8rem; }
+
+.vacio { margin-top: 2rem; color: var(--tinta-2); font-style: italic; }
+
+/* ---------- ficha ---------- */
+
+.volver { margin-bottom: 1.75rem; font-size: 0.95rem; }
+.volver a { text-decoration: none; color: var(--tinta-2); border-bottom: 1px solid var(--linea); }
+.volver a:hover { color: var(--chile); }
+
+.cabeza h1 {
+  font-size: clamp(2.4rem, 8vw, 5rem);
+  font-weight: 600;
+  max-width: 18ch;
+}
+
+.meta { display: flex; align-items: baseline; gap: 1rem; margin: 0.75rem 0 0; color: var(--tinta-2); }
+.meta .puntos { color: var(--chile); letter-spacing: 0.12em; font-size: 0.85rem; }
+
+/* el gesto: el contador de porciones */
+.porciones {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1.5rem 0 2.5rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--papel-hondo);
+  border-left: 3px solid var(--chile);
+  width: fit-content;
+}
+.porciones .rotulo { font-size: 0.95rem; color: var(--tinta-2); }
+.porciones button {
+  font: inherit;
+  font-size: 1.3rem;
+  line-height: 1;
+  width: 2.1rem;
+  height: 2.1rem;
+  color: var(--tinta);
+  background: transparent;
+  border: 1px solid var(--linea);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.porciones button:hover:not(:disabled) { border-color: var(--chile); color: var(--chile); }
+.porciones button:disabled { opacity: 0.35; cursor: not-allowed; }
+
+#n {
+  font-family: "Fraunces", Georgia, serif;
+  font-variation-settings: "SOFT" 30, "WONK" 1;
+  font-size: 2.5rem;
+  font-weight: 600;
+  min-width: 2ch;
+  text-align: center;
+  color: var(--chile);
+}
+
+.cuerpo { display: grid; grid-template-columns: 22rem 1fr; gap: 3.5rem; align-items: start; }
+
+.rail h2, .receta h2 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  font-variation-settings: normal;
+  letter-spacing: 0.01em;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--tinta);
+  margin-bottom: 1rem;
+}
+
+.rail { position: sticky; top: 1.5rem; }
+
+.grupo { margin-bottom: 1.5rem; }
+.grupo h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--tinta-2);
+  font-variation-settings: normal;
+  margin-bottom: 0.4rem;
+}
+
+.lista-ing { list-style: none; margin: 0; padding: 0; }
+.lista-ing li {
+  display: grid;
+  grid-template-columns: 4.5rem 2.2rem 1fr;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px dotted var(--linea);
+  align-items: baseline;
+}
+.lista-ing .cant {
+  text-align: right;
+  font-weight: 600;
+  transition: opacity 140ms ease;
+}
+.lista-ing .cant.cambia { opacity: 0.25; }
+.lista-ing .unid { color: var(--tinta-2); font-size: 0.9rem; }
+.lista-ing .item { line-height: 1.35; }
+.lista-ing .nota {
+  grid-column: 3;
+  font-size: 0.85rem;
+  color: var(--tinta-2);
+  font-style: italic;
+}
+
+.aviso, .rinde {
+  font-size: 0.9rem;
+  color: var(--tinta-2);
+  border-left: 2px solid var(--linea);
+  padding-left: 0.7rem;
+  margin: 0 0 1rem;
+}
+
+.foto { margin: 0 0 1.75rem; }
+.foto img { width: 100%; height: auto; display: block; }
+
+.pasos { list-style: none; counter-reset: paso; margin: 0; padding: 0; }
+.pasos li {
+  counter-increment: paso;
+  position: relative;
+  padding-left: 3.5rem;
+  margin-bottom: 1.1rem;
+  max-width: 62ch;
+}
+.pasos li::before {
+  content: counter(paso, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  font-family: "Fraunces", Georgia, serif;
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--chile);
+  opacity: 0.85;
+}
+
+.pie { margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--linea); color: var(--tinta-2); font-size: 0.9rem; }
+.pie a { color: var(--chile); }
+.pie .vault { margin: 0.5rem 0 0; }
+.pie code { font-size: 0.85rem; }
+
+/* ---------- chico ---------- */
+
+@media (max-width: 60rem) {
+  .cuerpo { grid-template-columns: 1fr; gap: 2.5rem; }
+  .rail { position: static; }
+  .hoja { padding: 1.75rem 1.25rem 4rem; }
+  .porciones { position: sticky; top: 0; z-index: 2; width: 100%; justify-content: center; }
+  .indice a { flex-direction: column; align-items: flex-start; gap: 0.35rem; padding: 1rem 0; }
+  .pasos li { padding-left: 2.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lista-ing .cant { transition: none; }
+}
