@@ -21,6 +21,18 @@ Dos cosas que se respetan siempre:
 1. **La receta original no se reescribe.** El bloque *Receta original* de cada nota conserva lo que dijo el autor, con su transcripción intacta.
 2. **Lo que no escala linealmente, se avisa.** El huevo para empanar, la sal, las especias fuertes: se ajustan a mano y se explica en la nota del ingrediente.
 
+## Las fotos
+
+Cada receta tiene foto, y el orden de fuentes es estricto:
+
+1. **Foto real del plato** — la del dueño, o un **frame del video original** elegido con visión artificial (se puntúa: ¿plato terminado? ¿apetitoso? ¿cuánto texto encima? ¿está crudo?).
+2. **IA documental** — **solo** si no hay foto real. Una imagen, calidad alta, y **queda marcada** en el crédito: *«Foto: generada con IA — interpretación de la receta, no es el plato real»*.
+3. **Tarjeta tipográfica** — si tampoco se puede generar.
+
+La IA nunca reemplaza una foto real.
+
+Todas las imágenes viven en el vault y se copian acá: **no se hotlinkea nada**, así ningún link externo puede caerse.
+
 ## Créditos
 
 Cada ficha lleva su autor y el link a la publicación original. Estas son **adaptaciones** (cantidades reescritas para cuatro); las transcripciones literales de los videos no se publican acá, viven en el vault privado.
