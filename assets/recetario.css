@@ -83,18 +83,41 @@ h1, h2, h3 {
 .indice .fila { border-bottom: 1px solid var(--linea); }
 
 .indice a {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 0.9rem 0.25rem;
+  display: grid;
+  grid-template-columns: 6.5rem 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.75rem 0.25rem;
   text-decoration: none;
 }
 .indice a:hover .nombre { color: var(--chile); }
 
+/* la foto del plato: es lo que abre el apetito, no un adorno */
+.miniatura {
+  display: block;
+  aspect-ratio: 4 / 3;
+  background: var(--papel-hondo);
+  overflow: hidden;
+}
+.miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--encuadre, 50% 50%);
+  display: block;
+}
+.miniatura .sin-foto {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-size: 0.7rem;
+  color: var(--tinta-2);
+  font-style: italic;
+}
+
 .indice .nombre {
   font-family: "Fraunces", Georgia, serif;
-  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
   line-height: 1.15;
 }
 .indice .margen { display: flex; align-items: baseline; gap: 1rem; white-space: nowrap; }
@@ -210,8 +233,38 @@ h1, h2, h3 {
   margin: 0 0 1rem;
 }
 
+/* la foto de la ficha: 4/5 reserva el alto (no salta el layout al cargar) */
 .foto { margin: 0 0 1.75rem; }
-.foto img { width: 100%; height: auto; display: block; }
+.foto img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: var(--encuadre, 50% 50%);
+  display: block;
+  background: var(--papel-hondo);
+}
+
+/* sin foto: tarjeta tipográfica, nunca un hueco gris */
+.foto.tarjeta {
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-content: center;
+  gap: 0.5rem;
+  text-align: center;
+  padding: 2rem;
+  border: 1px solid var(--linea);
+  background: var(--papel-hondo);
+}
+.foto.tarjeta span {
+  font-family: "Fraunces", Georgia, serif;
+  font-variation-settings: "SOFT" 30, "WONK" 1;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  line-height: 1.1;
+  color: var(--tinta-2);
+}
+.foto.tarjeta small { font-size: 0.85rem; color: var(--tinta-2); font-style: italic; }
+
+.credito-foto { margin: 0.35rem 0 0; font-size: 0.85rem; color: var(--tinta-2); }
 
 .pasos { list-style: none; counter-reset: paso; margin: 0; padding: 0; }
 .pasos li {
@@ -246,8 +299,10 @@ h1, h2, h3 {
   .rail { position: static; }
   .hoja { padding: 1.75rem 1.25rem 4rem; }
   .porciones { position: sticky; top: 0; z-index: 2; width: 100%; justify-content: center; }
-  .indice a { flex-direction: column; align-items: flex-start; gap: 0.35rem; padding: 1rem 0; }
+  .indice a { grid-template-columns: 5rem 1fr; row-gap: 0.35rem; padding: 1rem 0; }
+  .indice .margen { grid-column: 2; }
   .pasos li { padding-left: 2.75rem; }
+  .foto img, .foto.tarjeta { aspect-ratio: 1 / 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
